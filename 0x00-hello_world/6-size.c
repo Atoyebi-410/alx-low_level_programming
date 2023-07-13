@@ -8,7 +8,7 @@
 
 int main(void)
 {
-char charater;
+char acharacter;
 int ainteger;
 long along;
 long long alonglong;
