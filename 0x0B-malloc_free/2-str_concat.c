@@ -1,38 +1,56 @@
-#include "main.h"
+#include <stdio.h>
 #include <stdlib.h>
+#include "main.h"
+
 /**
- * *str_concat - concatenates two strings
- * @s1: first string
- * @s2: second string
- * Return: pointer to new space in memory or null
- **/
+ * str_concat - function that concatenates two strings
+ *
+ * @s1: string of chars
+ * @s2: string of chars
+ *
+ * Return: address of the newly allocated memory
+ */
+
 char *str_concat(char *s1, char *s2)
 {
-	char *strDup;
-	int i, j;
+	unsigned int len1, len2;
+	unsigned int i, j;
+	char *str_copy;
+	char *tmp1 = s1;
+	char *tmp2 = s2;
+
 	if (s1 == NULL)
 		s1 = "";
 	if (s2 == NULL)
 		s2 = "";
-	i = j = 0;
-	while (s1[i] != '\0')
+
+	i = 0;
+	while (*s1++)
 		i++;
-	while (s2[j] != '\0')
-		j++;
-	strDup = malloc(sizeof(char) * (i + j + 1));
-	if (strDup == NULL)
+	len1 = i;
+	s1 = tmp1;
+
+	i = 0;
+	while (*s2++)
+		i++;
+	len2 = i;
+	s2 = tmp2;
+
+	str_copy = malloc((len1 + len2) * sizeof(char) + 1);
+	if (str_copy == NULL)
 		return (NULL);
-	i = j = 0;
-	while (s1[i] != '\0')
+
+	j = 0;
+	while (j < len1)
 	{
-		strDup[i] = s1[i];
-		i++;
+		str_copy[j] = s1[j];
+		j++;
 	}
-	while (s2[j] != '\0')
+	while (j < len1 + len2)
 	{
-		strDup[i] = s2[j];
-		i++, j++;
+		str_copy[j] = s2[j - len1];
+		j++;
 	}
-	strDup[i] = '\0';
-	return (strDup);
+	str_copy[j] = '\0';
+	return (str_copy);
 }
