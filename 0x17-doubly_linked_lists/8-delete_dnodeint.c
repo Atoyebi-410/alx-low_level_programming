@@ -35,7 +35,7 @@ if (*head != NULL)
 else
 {
 h2->next = h1->next;
- 
+
 if (h1->next != NULL)
 h1->next->prev = h2;
 }
