@@ -1,4 +1,0 @@
-SRC = main.c school.c
-
-all:
-	$(CC) $(SRC) -o school1;95;0c
